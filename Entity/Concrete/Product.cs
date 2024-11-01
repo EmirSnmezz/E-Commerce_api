@@ -1,0 +1,18 @@
+﻿using Entity.Abstract;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Entity.Concrete
+{
+    public class Product : IEntity
+    {
+        public string ProductId { get; set ; }
+        public string CategoryId { get; set; }
+        public string ProductName { get; set; }
+        public short UnitsInStock { get; set; }
+        public decimal UnitInPrice { get; set; }
+    }
+}
