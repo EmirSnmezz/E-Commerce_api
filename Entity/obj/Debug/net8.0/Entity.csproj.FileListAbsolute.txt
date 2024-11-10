@@ -10,3 +10,7 @@ C:\Users\emirc\source\repos\E-Commerce_Server\Entity\obj\Debug\net8.0\Entity.dll
 C:\Users\emirc\source\repos\E-Commerce_Server\Entity\obj\Debug\net8.0\refint\Entity.dll
 C:\Users\emirc\source\repos\E-Commerce_Server\Entity\obj\Debug\net8.0\Entity.pdb
 C:\Users\emirc\source\repos\E-Commerce_Server\Entity\obj\Debug\net8.0\ref\Entity.dll
+C:\Users\emirc\source\repos\E-Commerce_Server\Entity\bin\Debug\net8.0\Core.dll
+C:\Users\emirc\source\repos\E-Commerce_Server\Entity\bin\Debug\net8.0\Core.pdb
+C:\Users\emirc\source\repos\E-Commerce_Server\Entity\obj\Debug\net8.0\Entity.csproj.AssemblyReference.cache
+C:\Users\emirc\source\repos\E-Commerce_Server\Entity\obj\Debug\net8.0\Entity.csproj.Up2Date

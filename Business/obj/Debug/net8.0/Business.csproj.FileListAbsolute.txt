@@ -16,3 +16,5 @@ C:\Users\emirc\source\repos\E-Commerce_Server\Business\obj\Debug\net8.0\Business
 C:\Users\emirc\source\repos\E-Commerce_Server\Business\obj\Debug\net8.0\refint\Business.dll
 C:\Users\emirc\source\repos\E-Commerce_Server\Business\obj\Debug\net8.0\Business.pdb
 C:\Users\emirc\source\repos\E-Commerce_Server\Business\obj\Debug\net8.0\ref\Business.dll
+C:\Users\emirc\source\repos\E-Commerce_Server\Business\bin\Debug\net8.0\Core.dll
+C:\Users\emirc\source\repos\E-Commerce_Server\Business\bin\Debug\net8.0\Core.pdb

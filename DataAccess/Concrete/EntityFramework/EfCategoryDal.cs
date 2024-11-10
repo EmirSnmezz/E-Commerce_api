@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCategoryDal : EntityRepositoryBase<Category>, ICategoryDal
+    public class EfCategoryDal : EntityRepositoryBase<Category, NorthwindDbContext>, ICategoryDal
     {
     }
 }

@@ -32,11 +32,6 @@ namespace Business.Concrete
             return _productDal.GetAll();
         }
 
-        public List<Product> GetAllByCategoryId(string categoryId)
-        {
-            return _productDal.GetAllByCategory(categoryId);
-        }
-
         public void Update(Product product)
         {
             _productDal.Update(product);

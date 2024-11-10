@@ -3,7 +3,7 @@ using Entity.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfProductDal : EntityRepositoryBase<Product>, IProductDal
+    public class EfProductDal : EntityRepositoryBase<Product, NorthwindDbContext>, IProductDal
     {
     }
 }

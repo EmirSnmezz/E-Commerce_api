@@ -16,3 +16,5 @@ C:\Users\emirc\source\repos\E-Commerce_Server\DataAccess\obj\Debug\net8.0\DataAc
 C:\Users\emirc\source\repos\E-Commerce_Server\DataAccess\obj\Debug\net8.0\DataAccess.csproj.Up2Date
 C:\Users\emirc\source\repos\E-Commerce_Server\DataAccess\bin\Debug\net8.0\DataAccess.runtimeconfig.json
 C:\Users\emirc\source\repos\E-Commerce_Server\DataAccess\obj\Debug\net8.0\DataAccess.genruntimeconfig.cache
+C:\Users\emirc\source\repos\E-Commerce_Server\DataAccess\bin\Debug\net8.0\Core.dll
+C:\Users\emirc\source\repos\E-Commerce_Server\DataAccess\bin\Debug\net8.0\Core.pdb
