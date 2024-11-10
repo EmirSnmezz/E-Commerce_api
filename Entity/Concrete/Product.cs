@@ -14,5 +14,8 @@ namespace Entity.Concrete
         public string ProductName { get; set; }
         public short UnitsInStock { get; set; }
         public decimal UnitInPrice { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }
