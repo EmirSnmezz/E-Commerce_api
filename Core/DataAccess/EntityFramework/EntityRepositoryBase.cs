@@ -1,15 +1,14 @@
-﻿
-using DataAccess.Abstract;
+﻿using DataAccess.Abstract;
 using Entity.Abstract;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Linq.Expressions;
 
-namespace DataAccess.Concrete.EntityFramework
+namespace Core.DataAccess.EntityFramework
 {
-    public class EntityRepositoryBase<T, TContext> : IEntityRepository<T> 
+    public class EntityRepositoryBase<T, TContext> : IEntityRepository<T>
         where T : class, IEntity, new()
-        where TContext:  DbContext, new()
+        where TContext : DbContext, new()
     {
         public void Add(T entity)
         {
@@ -34,7 +33,7 @@ namespace DataAccess.Concrete.EntityFramework
             using (TContext context = new TContext())
             {
                 return context.Set<T>().FirstOrDefault(filter);
-                
+
             }
         }
 
