@@ -31,3 +31,7 @@ C:\Users\emirc\source\repos\E-Commerce_Server\WebApi\obj\Debug\net8.0\refint\Web
 C:\Users\emirc\source\repos\E-Commerce_Server\WebApi\obj\Debug\net8.0\WebApi.pdb
 C:\Users\emirc\source\repos\E-Commerce_Server\WebApi\obj\Debug\net8.0\WebApi.genruntimeconfig.cache
 C:\Users\emirc\source\repos\E-Commerce_Server\WebApi\obj\Debug\net8.0\ref\WebApi.dll
+C:\Users\emirc\source\repos\E-Commerce_Server\WebApi\bin\Debug\net8.0\WebApi.staticwebassets.endpoints.json
+C:\Users\emirc\source\repos\E-Commerce_Server\WebApi\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\emirc\source\repos\E-Commerce_Server\WebApi\obj\Debug\net8.0\staticwebassets\msbuild.WebApi.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\emirc\source\repos\E-Commerce_Server\WebApi\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

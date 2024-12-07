@@ -1,11 +1,12 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Messages.Constants;
+using Core.Utilities.Messages.Results.DataResult.Abstract;
+using Core.Utilities.Messages.Results.DataResult.Concrete;
+using Core.Utilities.Messages.Results.Result.Abstract;
+using Core.Utilities.Messages.Results.Result.Concrete;
 using DataAccess.Abstract;
 using Entity.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Entity.DTOs;
 
 namespace Business.Concrete
 {
@@ -16,25 +17,53 @@ namespace Business.Concrete
         public ProductManager(IProductDal productDal)
         {
             _productDal = productDal;
+
         }
-        public void Add(Product product)
+        public IResult Add(Product product)
         {
+            if(product.ProductName.Length <= 2)
+                return new ErrorResult(Messages.ProductAddedError);
+            
             _productDal.Add(product);
+            return new SuccessResult(Messages.ProductAddedSuccessfully);
         }
 
-        public void Delete(Product product)
-        {
-            _productDal.Delete(product);
-        }
-
-        public List<Product> GetAll()
-        {
-            return _productDal.GetAll();
-        }
-
-        public void Update(Product product)
+        public IResult Update(Product product)
         {
             _productDal.Update(product);
+            return new SuccessResult(Messages.ProductUpdatedSuccessfully);
+        }
+
+        public IResult Delete(Product product)
+        {
+
+            _productDal.Delete(product);
+            return new SuccessResult(Messages.ProductDeletedSuccessfully);
+        }
+
+        public IDataResult<List<Product>> GetAll()
+        {
+            if(DateTime.Now.Hour == 22)
+            {
+                return new ErrorDataResult<List<Product>>(default, Messages.MaintenanceTimeError);
+            }
+
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListedSuccessfully);
+        }
+
+        public IDataResult<ProductDetailDTO> GetAllDetail(string id)
+        {
+            return new SuccessDataResult<ProductDetailDTO>(_productDal.GetProductDetails(id), Messages.ProductsListedSuccessfully);
+        }
+
+        public IDataResult<List<Product>> GetAllByCategoryId(string categoryId)
+        {
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(x=> x.CategoryId == categoryId), Messages.ProductsListedSuccessfully);
+        }
+
+        public IDataResult<List<Product>> GetAllByUnitPrice(decimal min, decimal max)
+        {
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(x => x.UnitInPrice >= min && x.UnitInPrice <= max), Messages.ProductsListedSuccessfully);
         }
     }
 }

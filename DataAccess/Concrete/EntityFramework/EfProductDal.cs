@@ -7,7 +7,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfProductDal : EntityRepositoryBase<Product, NorthwindDbContext>, IProductDal
     {
-        public List<ProductDetailDTO> GetProductDetails(int id)
+        public ProductDetailDTO GetProductDetails(string id)
         {
             using (var db = new NorthwindDbContext()) 
             {
@@ -17,10 +17,12 @@ namespace DataAccess.Concrete.EntityFramework
                                           select new ProductDetailDTO
                                           {
                                               CategoryName = c.CategoryName,
-                                              ProductId = (int)Convert.ToUInt32(p.ProductId),
+                                              ProductId = (p.ProductId),
                                               ProductName = p.ProductName,
                                               UnitsInStock = p.UnitsInStock
                                           }).FirstOrDefault();
+
+                return result;
             }
         }
     }
