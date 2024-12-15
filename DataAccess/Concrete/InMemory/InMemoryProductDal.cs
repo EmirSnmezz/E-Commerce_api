@@ -13,12 +13,12 @@ namespace DataAccess.Concrete.InMemory
         {
             _products = new List<Product>
             {
-            new Product {ProductId = "1", CategoryId = "1", ProductName = "TestUrunAdi", UnitInPrice = 1000, UnitsInStock = 50},
-            new Product {ProductId = "2", CategoryId = "4", ProductName = "TestUrunAdi2", UnitInPrice = 3000, UnitsInStock = 58},
-            new Product {ProductId = "3", CategoryId = "6", ProductName = "TestUrunAdi3", UnitInPrice = 2400, UnitsInStock = 30},
-            new Product {ProductId = "4", CategoryId = "5", ProductName = "TestUrunAdi4", UnitInPrice = 3500, UnitsInStock = 20},
-            new Product {ProductId = "5", CategoryId = "8", ProductName = "TestUrunAdi5", UnitInPrice = 7600, UnitsInStock = 40},
-            new Product {ProductId = "6", CategoryId = "12", ProductName = "TestUrunAdi6", UnitInPrice = 500, UnitsInStock = 150}
+            new Product {ProductID = 1, CategoryID = 1, ProductName = "TestUrunAdi", UnitPrice = 1000, UnitsInStock = 50},
+            new Product {ProductID = 2, CategoryID = 4, ProductName = "TestUrunAdi2", UnitPrice = 3000, UnitsInStock = 58},
+            new Product {ProductID = 3, CategoryID = 6, ProductName = "TestUrunAdi3", UnitPrice = 2400, UnitsInStock = 30},
+            new Product {ProductID = 4, CategoryID = 5, ProductName = "TestUrunAdi4", UnitPrice = 3500, UnitsInStock = 20},
+            new Product {ProductID = 5, CategoryID = 8, ProductName = "TestUrunAdi5", UnitPrice = 7600, UnitsInStock = 40},
+            new Product {ProductID = 6, CategoryID = 1, ProductName = "TestUrunAdi6", UnitPrice = 500, UnitsInStock = 150}
             };
         }
         public void Add(Product product)
@@ -28,7 +28,7 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Product product)
         {
-            Product? productToDelete = _products.SingleOrDefault(x => x.ProductId == product.ProductId);
+            Product? productToDelete = _products.SingleOrDefault(x => x.ProductID == product.ProductID);
             _products.Remove(productToDelete);
         }
 
@@ -47,23 +47,23 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
-        public List<Product> GetAllByCategory(string categoryId)
+        public List<Product> GetAllByCategory(int categoryId)
         {
-            return _products.Where(x => x.CategoryId == categoryId).ToList();
+            return _products.Where(x => x.CategoryID == categoryId).ToList();
         }
 
-        public ProductDetailDTO GetProductDetails(string id)
+        public ProductDetailDTO GetProductDetails(int id)
         {
             throw new NotImplementedException();
         }
 
         public void Update(Product product)
         {
-            Product updatedProduct = _products.SingleOrDefault(x => x.ProductId == product.ProductId);
+            Product updatedProduct = _products.SingleOrDefault(x => x.ProductID == product.ProductID);
             updatedProduct.ProductName = product.ProductName;
-            updatedProduct.UnitInPrice = product.UnitInPrice;
+            updatedProduct.UnitPrice = product.UnitPrice;
             updatedProduct.UnitsInStock = product.UnitsInStock;
-            updatedProduct.CategoryId = product.CategoryId;
+            updatedProduct.CategoryID = product.CategoryID;
         }
     }
 }

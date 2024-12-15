@@ -13,9 +13,9 @@ namespace Business.Abstract
     public interface IProductService
     {
         IDataResult<List<Product>> GetAll();
-        IDataResult<List<Product>> GetAllByCategoryId(string categoryId);
+        IDataResult<List<Product>> GetAllByCategoryId(int categoryId);
         IDataResult<List<Product>> GetAllByUnitPrice(decimal min, decimal max);
-        IDataResult<ProductDetailDTO> GetAllDetail(string id);
+        IDataResult<ProductDetailDTO> GetAllDetail(int id);
         IResult Add(Product product);
         IResult Update(Product product);
         IResult Delete(Product product);

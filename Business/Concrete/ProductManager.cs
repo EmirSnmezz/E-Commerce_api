@@ -51,19 +51,19 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListedSuccessfully);
         }
 
-        public IDataResult<ProductDetailDTO> GetAllDetail(string id)
+        public IDataResult<ProductDetailDTO> GetAllDetail(int id)
         {
             return new SuccessDataResult<ProductDetailDTO>(_productDal.GetProductDetails(id), Messages.ProductsListedSuccessfully);
         }
 
-        public IDataResult<List<Product>> GetAllByCategoryId(string categoryId)
+        public IDataResult<List<Product>> GetAllByCategoryId(int categoryId)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(x=> x.CategoryId == categoryId), Messages.ProductsListedSuccessfully);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(x=> x.CategoryID == categoryId), Messages.ProductsListedSuccessfully);
         }
 
         public IDataResult<List<Product>> GetAllByUnitPrice(decimal min, decimal max)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(x => x.UnitInPrice >= min && x.UnitInPrice <= max), Messages.ProductsListedSuccessfully);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(x => x.UnitPrice >= min && x.UnitPrice <= max), Messages.ProductsListedSuccessfully);
         }
     }
 }

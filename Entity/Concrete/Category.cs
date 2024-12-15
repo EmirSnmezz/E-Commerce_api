@@ -9,7 +9,7 @@ namespace Entity.Concrete
 {
     public class Category : IEntity
     {
-        public string CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }

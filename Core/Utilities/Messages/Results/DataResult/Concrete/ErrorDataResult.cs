@@ -12,7 +12,7 @@ namespace Core.Utilities.Messages.Results.DataResult.Concrete
 
         public ErrorDataResult(T result, string message) : base(result, false, message) { }
 
-        public ErrorDataResult(string message): (default, message) {}
+        public ErrorDataResult(string message): this(default, message) {}
 
         public ErrorDataResult(): base(default, false) {}
     }

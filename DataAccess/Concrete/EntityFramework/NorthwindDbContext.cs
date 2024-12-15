@@ -15,22 +15,22 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
 
-        public override int SaveChanges()
-        {
-            var entries = ChangeTracker.Entries<IEntity>();
-            foreach (var entry in entries)
-            {
-                if(entry.State == EntityState.Added)
-                {
-                    entry.Property(p => p.CreatedDate).CurrentValue = DateTime.Now;
-                }
+        //public override int SaveChanges()
+        //{
+        //    var entries = ChangeTracker.Entries<IEntity>().ToList();
+        //    foreach (var entry in entries)
+        //    {
+        //        if(entry.State == EntityState.Added)
+        //        {
+        //            entry.Property(p => p.CreatedDate).CurrentValue = DateTime.Now;
+        //        }
 
-                if(entry.State == EntityState.Modified)
-                {
-                    entry.Property(p => p.UpdatedDate).CurrentValue = DateTime.Now;
-                }
-            }
-            return base.SaveChanges();
-        }
+        //        if(entry.State == EntityState.Modified)
+        //        {
+        //            entry.Property(p => p.UpdatedDate).CurrentValue = DateTime.Now;
+        //        }
+        //    }
+        //    return base.SaveChanges();
+        //}
     }
 }
