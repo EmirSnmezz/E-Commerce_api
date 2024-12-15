@@ -65,5 +65,10 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(x => x.UnitPrice >= min && x.UnitPrice <= max), Messages.ProductsListedSuccessfully);
         }
+
+        public IDataResult<Product> GetById(int id)
+        {
+            return new SuccessDataResult<Product>(_productDal.Get(x => x.ProductID == id), Messages.ProductsListedSuccessfully);
+        }
     }
 }
