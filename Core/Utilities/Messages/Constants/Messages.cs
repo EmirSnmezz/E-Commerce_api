@@ -13,10 +13,19 @@ namespace Core.Utilities.Messages.Constants
                 public const string ProductDeletedSuccessfully = "Ürün Başarıyla Silindi";
                 public const string ProductsListedSuccessfully = "Ürünler Başarıyla Listelendi";
 
+
+        #region ValidationMessages
+        public const string ProductNameMustBeNotNull = "Ürün adı bilgisi boş geçilemez";
+        public const string CategoryNameMustBeNotNullOnTheProductDefinition = "Ürün tanımlama esnasında Kategori bilgisi boş geçilemez.";
+        public const string UnitsInStockNotBeNullOnTheProductDefinition = "Ürün Tanımlama Esnasında Stok Adedi bilgisi Boş Geçilemez.";
+        public const string UnitPriceNotBeNullOnTheProductDefinition = "Ürün tanımlama esnasında birim fiyat bilgisi boş geçilemez.";
+
         #endregion
 
-            #region Product Messages For Failed Process
-                public const string ProductAddedError = "Ürün Eklenirken Hata!";
+        #endregion
+
+        #region Product Messages For Failed Process
+        public const string ProductAddedError = "Ürün Eklenirken Hata!";
                 public const string ProducUpdatedError = "Ürün Güncellenirken Hata!";
                 public const string ProductDeletedError = "Ürün Silinirken Hata!";
                 public const string ProductsListedError = "Ürünler Listelenirken Hata!";
