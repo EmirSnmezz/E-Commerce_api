@@ -12,6 +12,7 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(product => product.ProductName).NotEmpty().WithMessage(Messages.ProductNameMustBeNotNull);
             RuleFor(product => product.ProductName).NotNull().WithMessage(Messages.ProductNameMustBeNotNull);
             RuleFor(product => product.ProductName).MinimumLength(2);
+            RuleFor(product => product.ProductName).Must(StartsWithA); // kendi tanımladığımız fonksitoondaki şartı yerine getirmesini istiyorsak yani tanımlı olan kurallar yerine FluentValidation bizim tanımlamış olduğumuz kuralları kullansın istiyorsak Must() methoduna ilgili kontrolü yaptığımız metohdun adını gireriz.
             #endregion
 
             #region Validation Rules For Category Id
@@ -28,6 +29,11 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(product => product.UnitsInStock).NotEmpty().WithMessage(Messages.UnitsInStockNotBeNullOnTheProductDefinition);
             RuleFor(product => product.UnitsInStock).NotNull().WithMessage(Messages.UnitsInStockNotBeNullOnTheProductDefinition);
             #endregion
+        }
+
+        private bool StartsWithA(string arg)
+        {
+            return arg.StartsWith('A');
         }
     }
 }

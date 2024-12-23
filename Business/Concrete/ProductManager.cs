@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.AutoFac.Validation;
 using Core.Utilities.Messages.Constants;
 using Core.Utilities.Messages.Results.DataResult.Abstract;
 using Core.Utilities.Messages.Results.DataResult.Concrete;
@@ -19,11 +21,9 @@ namespace Business.Concrete
             _productDal = productDal;
 
         }
+        [ValidationAspect(typeof(ProductValidations))]
         public IResult Add(Product product)
         {
-            if(product.ProductName.Length <= 2)
-                return new ErrorResult(Messages.ProductAddedError);
-            
             _productDal.Add(product);
             return new SuccessResult(Messages.ProductAddedSuccessfully);
         }

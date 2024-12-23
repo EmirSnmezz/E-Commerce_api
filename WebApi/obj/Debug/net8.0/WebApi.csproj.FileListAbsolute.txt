@@ -91,3 +91,4 @@ C:\Users\emirc\source\repos\E-Commerce_Server\WebApi\bin\Debug\net8.0\Autofac.dl
 C:\Users\emirc\source\repos\E-Commerce_Server\WebApi\bin\Debug\net8.0\Autofac.Extras.DynamicProxy.dll
 C:\Users\emirc\source\repos\E-Commerce_Server\WebApi\bin\Debug\net8.0\Castle.Core.dll
 C:\Users\emirc\source\repos\E-Commerce_Server\WebApi\bin\Debug\net8.0\Autofac.Extensions.DependencyInjection.dll
+C:\Users\emirc\source\repos\E-Commerce_Server\WebApi\bin\Debug\net8.0\FluentValidation.dll
