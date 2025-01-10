@@ -1,0 +1,18 @@
+.vs/
+*.user
+*.suo
+
+# Bin ve obj klasörleri
+bin/
+obj/
+
+# Paket yönetimi ile ilgili dosyalar
+*.nupkg
+*.snupkg
+
+# Yapı ve log dosyaları
+*.log
+
+# Diğer istemediğin dosya türleri
+*.dll
+*.exe
