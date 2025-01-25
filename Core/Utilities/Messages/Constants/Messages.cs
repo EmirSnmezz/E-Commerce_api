@@ -83,6 +83,7 @@ namespace Core.Utilities.Messages.Constants
         #region Global Messages
 
             public const string MaintenanceTimeError = "Sistem Saat 22.00 İtibariyle Bakıma Alındığı İçin Hizmet Verememektedir. Lütfen Bir Kaç Saat Sonra Tekrar Deneyiniz.";
+            public const string ProductCountOfCategoryError = "Bir Kategoride Maksimum 10 Ürün Olabilir.";
 
         #endregion
 

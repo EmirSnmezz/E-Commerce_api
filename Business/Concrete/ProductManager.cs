@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.CCS;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.AutoFac.Validation;
 using Core.Utilities.Messages.Constants;
@@ -21,11 +22,26 @@ namespace Business.Concrete
             _productDal = productDal;
 
         }
+
         [ValidationAspect(typeof(ProductValidations))]
         public IResult Add(Product product)
         {
-            _productDal.Add(product);
-            return new SuccessResult(Messages.ProductAddedSuccessfully);
+            if (CheckIfProductCountOfCategoryCorrect(product.CategoryID).IsSuccess)
+            {
+                _productDal.Add(product);
+                return new SuccessResult(Messages.ProductAddedSuccessfully);
+            }
+            return new ErrorResult(Messages.ProductAddedError);
+        }
+
+        private IResult CheckIfProductCountOfCategoryCorrect(int categoryId) // private çünkü bu methodun sadece bu classın içerisinde kullanılmasını istiyoruz. Eğer ki ben bunu farklı managerlarda kullanabilirim dersek sakın bunu public yapmayacağız. Öyle bir durumda bu bir servis olmuş olur bunu interface'e yazıp öyle implement etmemiz gerekecektir.
+        {
+            List<Product> productsByCategoryId = _productDal.GetAll(x => x.CategoryID == categoryId);
+            if (productsByCategoryId.Count() < 10)
+            {
+                return new SuccessResult(Messages.ProductAddedSuccessfully);
+            }
+            return new ErrorResult(Messages.ProductCountOfCategoryError);
         }
 
         public IResult Update(Product product)
@@ -36,17 +52,12 @@ namespace Business.Concrete
 
         public IResult Delete(Product product)
         {
-
             _productDal.Delete(product);
             return new SuccessResult(Messages.ProductDeletedSuccessfully);
         }
 
         public IDataResult<List<Product>> GetAll()
         {
-            
-                //return new ErrorDataResult<List<Product>>(default, Messages.MaintenanceTimeError);
-            
-
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListedSuccessfully);
         }
 
@@ -57,7 +68,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAllByCategoryId(int categoryId)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(x=> x.CategoryID == categoryId), Messages.ProductsListedSuccessfully);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(x => x.CategoryID == categoryId), Messages.ProductsListedSuccessfully);
         }
 
         public IDataResult<List<Product>> GetAllByUnitPrice(decimal min, decimal max)
