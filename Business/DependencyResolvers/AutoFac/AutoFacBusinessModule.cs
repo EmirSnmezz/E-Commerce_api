@@ -14,9 +14,16 @@ namespace Business.DependencyResolvers.AutoFac
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance(); // biri IProductService isterse ona ProductManager ver demenin AutoFac'deki karşılığı budur.
-            builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
-            
+            #region Product Dependencies
+                builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance(); // biri IProductService isterse ona ProductManager ver demenin AutoFac'deki karşılığı budur.
+                builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
+            #endregion
+
+            #region Category Dependencies
+            builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
+                builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
+            #endregion
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly)

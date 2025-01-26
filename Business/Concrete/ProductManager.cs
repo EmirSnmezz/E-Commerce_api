@@ -1,7 +1,7 @@
 ﻿using Business.Abstract;
-using Business.CCS;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.AutoFac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Messages.Constants;
 using Core.Utilities.Messages.Results.DataResult.Abstract;
 using Core.Utilities.Messages.Results.DataResult.Concrete;
@@ -16,32 +16,24 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         private readonly IProductDal _productDal;
+        private readonly ICategoryService _categoryService;
 
-        public ProductManager(IProductDal productDal)
+        public ProductManager(IProductDal productDal, ICategoryService categoryService)
         {
             _productDal = productDal;
-
+            _categoryService = categoryService;
         }
 
         [ValidationAspect(typeof(ProductValidations))]
         public IResult Add(Product product)
-        {
-            if (CheckIfProductCountOfCategoryCorrect(product.CategoryID).IsSuccess)
+        {   
+            IResult result = BusinessRules.Run(CheckIfProductCountOfCategoryCorrect(product.CategoryID), CheckIfProductNameExist(product.ProductName), CheckIfCategoryLimitExceded());
+            if (result != null)
             {
-                _productDal.Add(product);
-                return new SuccessResult(Messages.ProductAddedSuccessfully);
+                return result;
             }
-            return new ErrorResult(Messages.ProductAddedError);
-        }
-
-        private IResult CheckIfProductCountOfCategoryCorrect(int categoryId) // private çünkü bu methodun sadece bu classın içerisinde kullanılmasını istiyoruz. Eğer ki ben bunu farklı managerlarda kullanabilirim dersek sakın bunu public yapmayacağız. Öyle bir durumda bu bir servis olmuş olur bunu interface'e yazıp öyle implement etmemiz gerekecektir.
-        {
-            List<Product> productsByCategoryId = _productDal.GetAll(x => x.CategoryID == categoryId);
-            if (productsByCategoryId.Count() < 10)
-            {
-                return new SuccessResult(Messages.ProductAddedSuccessfully);
-            }
-            return new ErrorResult(Messages.ProductCountOfCategoryError);
+            _productDal.Add(product);
+            return new SuccessResult(Messages.ProductAddedSuccessfully);
         }
 
         public IResult Update(Product product)
@@ -80,5 +72,41 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<Product>(_productDal.Get(x => x.ProductID == id), Messages.ProductsListedSuccessfully);
         }
+
+        #region Business Rules Control Methods
+        private IResult CheckIfProductCountOfCategoryCorrect(int categoryId) // private çünkü bu methodun sadece bu classın içerisinde kullanılmasını istiyoruz. Eğer ki ben bunu farklı managerlarda kullanabilirim dersek sakın bunu public yapmayacağız. Öyle bir durumda bu bir servis olmuş olur bunu interface'e yazıp öyle implement etmemiz gerekecektir.
+        {
+            List<Product> productsByCategoryId = _productDal.GetAll(x => x.CategoryID == categoryId);
+            if (productsByCategoryId.Count() < 10)
+            {
+                return new SuccessResult(Messages.ProductAddedSuccessfully);
+            }
+            return new ErrorResult(Messages.ProductCountOfCategoryError);
+        }
+
+        private IResult CheckIfProductNameExist(string productName)
+        {
+            bool getProductByName = _productDal.GetAll(x => x.ProductName == productName).Any();
+
+            if (!getProductByName)
+            {
+                return new SuccessResult();
+            }
+
+            return new ErrorResult(Messages.ProductNameAlReadyExistError);
+        }
+
+        private IResult CheckIfCategoryLimitExceded()
+        {
+            int result = _categoryService.GetAll().Result.Distinct().Count();
+
+            if (result < 15)
+            {
+                return new SuccessResult();
+            }
+
+            return new ErrorResult(Messages.CatergoryCountError);
+        }
+        #endregion
     }
 }

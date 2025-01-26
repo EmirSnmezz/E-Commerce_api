@@ -1,6 +1,4 @@
-﻿
-
-namespace Core.Utilities.Messages.Constants
+﻿namespace Core.Utilities.Messages.Constants
 {
     public static class Messages
     {
@@ -84,6 +82,8 @@ namespace Core.Utilities.Messages.Constants
 
             public const string MaintenanceTimeError = "Sistem Saat 22.00 İtibariyle Bakıma Alındığı İçin Hizmet Verememektedir. Lütfen Bir Kaç Saat Sonra Tekrar Deneyiniz.";
             public const string ProductCountOfCategoryError = "Bir Kategoride Maksimum 10 Ürün Olabilir.";
+            public const string ProductNameAlReadyExistError = "Aynı İsime Sahip Ürün Ekleyemezsiniz.";
+            public const string CatergoryCountError = "Kategori Sayısı 15'i geçtiği için sisteme yeni ürün eklenememektedir.";
 
         #endregion
 
